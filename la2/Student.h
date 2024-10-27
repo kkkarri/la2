@@ -17,9 +17,13 @@ class Student {
     string studentID;
     double gpa;
     bool expelled;
+    static int totalStud;//підрахунок студентів
 
 public:
-    Student(string fn, string ln, int a, string id);
+    Student();//без парамертрів
+    Student(string fn, string ln, int a, string id);//з параметрами
+    Student(const Student& others);//копіювальний
+    ~Student();
     string getFirstName() const { return firstName; }
     string getLastName() const { return lastName; }
     void setGPA(double newGPA);
@@ -34,6 +38,6 @@ public:
     void writeToDisk(ofstream& outFile) const;
     void readFromDisk(ifstream& inFile);
 
-    
+    static int getTotalStudent() { return totalStud; }
 };
 #endif // STUDENT_H

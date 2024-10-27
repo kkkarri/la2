@@ -1,11 +1,32 @@
 #include "Student.h"
-#include "Faculty.h" // Підключаємо Faculty.h
+#include "Faculty.h" 
+using namespace std; 
 
-using namespace std; // Додаємо using namespace std
+//ініціалізація статистичного поля
+int Student::totalStud = 0;
 
-// Конструктор класу Student
-Student::Student(string fn, string ln, int a, string id)
-    : firstName(fn), lastName(ln), age(a), studentID(id), gpa(3.8), expelled(false) {}
+// Конструктор класу Student(без параметрів)
+Student::Student() : firstName(""), lastName(""), age(0), studentID(""), gpa(0.0), expelled(false)
+{
+    totalStud++;
+}
+
+// Конструктор класу Student(з параметрами)
+Student::Student(string fn, string ln, int a, string id) : firstName(fn), lastName(ln), age(a), studentID(id), gpa(3.8), expelled(false)
+{
+    totalStud++;
+}
+
+// Конструктор класу Student(копіювальний)
+Student::Student(const Student& other) : firstName(other.firstName), lastName(other.lastName), age(other.age), studentID(other.studentID), gpa(other.gpa), expelled(other.expelled)
+{
+    totalStud++;
+}
+
+// Деструктор
+Student::~Student() {
+    totalStud--;
+}
 
 // Встановлення GPA
 void Student::setGPA(double newGPA) {

@@ -9,11 +9,13 @@ class Faculty
 private:
     string facultyName;
     int credits;
-    Student* enrolledStudents[10]; // Заміна на масив
+    Student* enrolledStudents[10]; // масив
     int studentCount; // Кількість записаних студентів
 
 public:
-    Faculty(string name, int cr);
+    Faculty();//без параметрів
+    Faculty(string name, int cr);//з параметрами
+    Faculty(const Faculty& others);//копіювальний 
 
     void enrollStudent(Student* student);
     void displayFacultyInfo() const;

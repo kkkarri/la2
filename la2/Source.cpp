@@ -3,6 +3,22 @@
 #include "Student.h"
 #include "Faculty.h"
 using namespace std;
+
+// Функція поза межами класу
+void calculateGPA(const Student& student) {
+    cout << "GPA of " << student.getFirstName() << " " << student.getLastName() << ": " << student.getGPA() << endl;
+}
+
+// Перевантажена функція
+void calculateGPA(Student* student) {
+    cout << "GPA of " << student->getFirstName() << " " << student->getLastName() << ": " << student->getGPA() << endl;
+}
+
+// Функція, яка повертає об’єкт класу
+Student createStudent(string fn, string ln, int a, string id) {
+    return Student(fn, ln, a, id);
+}
+
 int main()
 {
 	srand(time(0));//генератор випадкових чисел
@@ -46,6 +62,16 @@ int main()
 
     // Виведення інформації про факультет після читання з файлу
     readFaculty.displayFacultyInfo();
+
+    // Виклик функції calculateGPA
+    calculateGPA(student1);
+    calculateGPA(&student2);
+
+    // Створення об’єкта класу за допомогою функції createStudent
+    Student student4 = createStudent("JENNY", "HARRIS", 25, "T123L");
+
+    // Виведення інформації про студента
+    student4.showInfo();
 
     return 0;
 }

@@ -3,8 +3,17 @@
 using namespace std; 
 
 // Конструктор класу Faculty
-Faculty::Faculty(string name, int cr)
-    : facultyName(name), credits(cr), studentCount(0) {}
+Faculty::Faculty(string name, int cr) : facultyName(name), credits(cr), studentCount(0) {}//з параметром
+
+Faculty::Faculty() : facultyName(""), credits(0), studentCount(0) {}//без параметрів
+
+Faculty::Faculty(const Faculty& other) : facultyName(other.facultyName), credits(other.credits), studentCount(other.studentCount) //копіювальний
+{
+    for (int i = 0; i < studentCount; i++)
+    {
+        enrolledStudents[i] = new Student(*other.enrolledStudents[i]);
+    }
+}
 
 // Реєстрація студента на факультет
 void Faculty::enrollStudent(Student* student) {
